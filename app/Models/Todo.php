@@ -11,4 +11,9 @@ class Todo extends Model
 
     protected $fillable = ['description'];
 
+    public static function getAllTodos(){
+
+        return Todo::select('id','description')->get();
+    }
+
 }

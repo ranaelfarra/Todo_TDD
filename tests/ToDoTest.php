@@ -35,4 +35,11 @@ class ToDoTest extends TestCase
 
         $this->assertEquals(true,$result);
     }
+    public function test_list_all_todos(){
+
+        $list_todos = $this->todo->listAllTodos();
+
+        $this->assertEquals(array(),$list_todos);
+
+    }
 }
