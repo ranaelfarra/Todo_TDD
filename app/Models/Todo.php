@@ -1,16 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wahdan
- * Date: 25/01/18
- * Time: 09:50 م
- */
 
 namespace App\Models;
 
 
-class Todo
+use Illuminate\Database\Eloquent\Model;
+
+class Todo extends Model
 {
     protected $table = 'to_dos';
+
+    protected $fillable = ['description'];
 
 }
