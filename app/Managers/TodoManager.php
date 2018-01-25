@@ -34,5 +34,19 @@ class TodoManager
          }
      }
 
+     public function markTodos($ids){
+
+        try{
+
+            return Todo::done($ids);
+
+        }
+        catch (\Exception $exception){
+
+            return false;
+        }
+
+     }
+
 
 }

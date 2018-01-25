@@ -42,4 +42,15 @@ class ToDoTest extends TestCase
         $this->assertNotEquals(false,$list_todos);
 
     }
+    public function test_mark_todos_as_done(){
+
+        //todo improvement
+
+        $todos = [1];
+
+        $result = $this->todo->markTodos($todos);
+
+        $this->assertNotEquals(false,$result);
+
+    }
 }
