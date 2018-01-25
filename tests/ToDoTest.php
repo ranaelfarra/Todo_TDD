@@ -39,7 +39,7 @@ class ToDoTest extends TestCase
 
         $list_todos = $this->todo->listAllTodos();
 
-        $this->assertEquals(array(),$list_todos);
+        $this->assertNotEquals(false,$list_todos);
 
     }
 }
