@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Managers\TodoManager;
 class ToDoTest extends TestCase
 {
+    use DatabaseTransactions;
+
     private $todo;
 
     protected function setUp()
@@ -32,6 +34,5 @@ class ToDoTest extends TestCase
         $result = $this->todo->store($new_todo);
 
         $this->assertEquals(true,$result);
-
     }
 }
