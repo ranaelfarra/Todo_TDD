@@ -13,3 +13,7 @@
 
 Route::GET('/', ['as' => 'todo.index', 'uses' => 'portal\ToDoController@index']);
 
+Route::POST('store', ['as' => 'todo.store', 'uses' => 'portal\ToDoController@store']);
+
+Route::POST('done', ['as' => 'todo.done', 'uses' => 'portal\ToDoController@done']);
+

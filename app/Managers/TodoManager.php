@@ -6,11 +6,25 @@ use App\Models\Todo;
 
 class TodoManager
 {
-    public function listAllTodos(){
+    public function listAllUndoneTodos(){
 
         try{
 
-           return Todo::getAllTodos()->toArray();
+           return Todo::getUndoneTodos()->toArray();
+
+        }
+        catch (\Exception $exception){
+
+            return false;
+        }
+
+    }
+
+    public function listAllDoneTodos(){
+
+        try{
+
+            return Todo::getDoneTodos()->toArray();
 
         }
         catch (\Exception $exception){
@@ -47,6 +61,5 @@ class TodoManager
         }
 
      }
-
 
 }

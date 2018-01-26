@@ -12,9 +12,14 @@ class Todo extends Model
 
     protected $fillable = ['description'];
 
-    public static function getAllTodos(){
+    public static function getUndoneTodos(){
 
-        return Todo::select('id','description')->get();
+        return Todo::select('id','description')->where('done',0)->get();
+    }
+
+    public static function getDoneTodos(){
+
+        return Todo::select('id','description')->where('done',1)->get();
     }
     public static function done($ids){
 

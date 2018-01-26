@@ -37,20 +37,30 @@ class ToDoTest extends TestCase
     }
     public function test_list_all_todos(){
 
-        $list_todos = $this->todo->listAllTodos();
+        $list_todos = $this->todo->listAllUndoneTodos();
 
         $this->assertNotEquals(false,$list_todos);
 
     }
     public function test_mark_todos_as_done(){
 
-        //todo improvement
+//        $todos = factory(App\Models\Todo::class, 3)->make();
+//
+//
+//
+//        $result = $this->todo->markTodos($todos);
+//
+//        $this->beginDatabaseTransaction();
+//
+//        $this->assertNotEquals(false,$result);
 
-        $todos = [1];
+    }
 
-        $result = $this->todo->markTodos($todos);
+    public function test_list_all_done_todos(){
 
-        $this->assertNotEquals(false,$result);
+        $list_todos = $this->todo->listAllDoneTodos();
+
+        $this->assertNotEquals(false,$list_todos);
 
     }
 }

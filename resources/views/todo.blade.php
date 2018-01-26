@@ -27,7 +27,7 @@
                     <button type="submit" class="btn btn-success">Done</button>
 
                     <ul id="sortable" class="list-unstyled">
-                        @foreach($data as $todo)
+                        @foreach($data['undone_todos'] as $todo)
                             <li class="ui-state-default">
                                 <div class="checkbox">
                                     <label>
@@ -46,8 +46,10 @@
                 <div class="todolist">
                     <h1>Already Done</h1>
                     <ul id="done-items" class="list-unstyled">
-                        <li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        @foreach($data['done_todos'] as $todo)
 
+                        <li>{{$todo['description']}} <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
