@@ -63,4 +63,8 @@ class ToDoTest extends TestCase
         $this->assertNotEquals(false,$list_todos);
 
     }
+
+    public function test_delete_todo(){
+
+    }
 }

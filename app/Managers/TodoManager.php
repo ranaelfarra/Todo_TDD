@@ -10,7 +10,7 @@ class TodoManager
 
         try{
 
-           return Todo::getUndoneTodos()->toArray();
+           return Todo::getTodos(false)->toArray();
 
         }
         catch (\Exception $exception){
@@ -24,7 +24,7 @@ class TodoManager
 
         try{
 
-            return Todo::getDoneTodos()->toArray();
+            return Todo::getTodos(true)->toArray();
 
         }
         catch (\Exception $exception){
