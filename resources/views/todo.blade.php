@@ -1,40 +1,46 @@
 @extends('layout.default_layout')
 
 @section('content')
-
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                @if(Session::has('message'))
+                    <div class="alert alert @if(Session::has('error')) alert-danger @else alert-success @endif">
+                        {{Session::get('message')}}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+
             <div class="col-md-6">
                 <div class="todolist not-done">
                     <h1>Todos</h1>
-                    <input type="text" class="form-control add-todo" placeholder="Add todo">
-                    <button id="checkAll" class="btn btn-success">Mark all as done</button>
+                    {!! Form::open(['route' => 'todo.store']) !!}
+                    <input type="text" name="description" class="form-control" placeholder="Add todo">
+                    <button class="btn btn-success">Submit</button>
+                    {!! Form::close() !!}
 
-                    <hr>
+
+
+                    {!! Form::open(['route' => 'todo.done']) !!}
+                    <button type="submit" class="btn btn-success">Done</button>
+
                     <ul id="sortable" class="list-unstyled">
-                        <li class="ui-state-default">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="" />Take out the trash</label>
-                            </div>
-                        </li>
-                        <li class="ui-state-default">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="" />Buy bread</label>
-                            </div>
-                        </li>
-                        <li class="ui-state-default">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="" />Teach penguins to fly</label>
-                            </div>
-                        </li>
+                        @foreach($data as $todo)
+                            <li class="ui-state-default">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="id[]" type="checkbox" value="{{$todo['id']}}" />{{$todo['description']}}</label>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
-                    <div class="todo-footer">
-                        <strong><span class="count-todos"></span></strong> Items Left
-                    </div>
+                    {!! Form::close() !!}
+
+
                 </div>
+
             </div>
             <div class="col-md-6">
                 <div class="todolist">
