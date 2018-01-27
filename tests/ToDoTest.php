@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Managers\TodoManager;
 class ToDoTest extends TestCase
 {
+
     use DatabaseTransactions;
 
     private $todo;
@@ -20,6 +21,9 @@ class ToDoTest extends TestCase
     protected function tearDown()
     {
         $this->todo = NULL;
+
+        parent::tearDown ();
+
     }
 
     public function test_open_todo_page()
@@ -44,15 +48,11 @@ class ToDoTest extends TestCase
     }
     public function test_mark_todos_as_done(){
 
-//        $todos = factory(App\Models\Todo::class, 3)->make();
-//
-//
-//
-//        $result = $this->todo->markTodos($todos);
-//
-//        $this->beginDatabaseTransaction();
-//
-//        $this->assertNotEquals(false,$result);
+        $todos_id = array_column(factory(App\Models\Todo::class, 3)->create()->toArray() , 'id');
+
+        $result = $this->todo->markTodos($todos_id);
+
+        $this->assertNotEquals(false,$result);
 
     }
 
@@ -65,6 +65,13 @@ class ToDoTest extends TestCase
     }
 
     public function test_delete_todo(){
+
+
+        $todos_id = array_column(factory(App\Models\Todo::class, 3)->create(['done' => 1])->toArray() , 'id');
+
+        $result = $this->todo->delete($todos_id);
+
+        $this->assertEquals(3,$result);
 
     }
 }

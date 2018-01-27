@@ -15,6 +15,7 @@ class TodoManager
         }
         catch (\Exception $exception){
 
+            dd($exception);
             return false;
         }
 
@@ -60,6 +61,19 @@ class TodoManager
             return false;
         }
 
+     }
+
+     public function delete($ids){
+
+         try{
+
+             return Todo::deleteTodos($ids);
+
+         }
+         catch (\Exception $exception){
+
+             return false;
+         }
      }
 
 }

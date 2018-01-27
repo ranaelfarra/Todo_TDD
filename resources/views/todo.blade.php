@@ -23,20 +23,23 @@
 
 
 
+                    @if(count($data['undone_todos']))
+
                     {!! Form::open(['route' => 'todo.done']) !!}
-                    <button type="submit" class="btn btn-success">Done</button>
 
                     <ul id="sortable" class="list-unstyled">
                         @foreach($data['undone_todos'] as $todo)
                             <li class="ui-state-default">
                                 <div class="checkbox">
-                                    <label>
-                                        <input name="id[]" type="checkbox" value="{{$todo['id']}}" />{{$todo['description']}}</label>
+                                    <label><input name="id[]" type="checkbox" value="{{$todo['id']}}" />{{$todo['description']}}</label>
                                 </div>
                             </li>
                         @endforeach
                     </ul>
-                    {!! Form::close() !!}
+                        <button type="submit" class="btn btn-success">Done</button>
+
+                        {!! Form::close() !!}
+                    @endif
 
 
                 </div>
@@ -46,10 +49,18 @@
                 <div class="todolist">
                     <h1>Already Done</h1>
                     <ul id="done-items" class="list-unstyled">
-                        @foreach($data['done_todos'] as $todo)
+                        @if(count($data['done_todos']))
+                        {!! Form::open(['route' => 'todo.delete']) !!}
 
-                        <li>{{$todo['description']}} <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
+                       @foreach($data['done_todos'] as $todo)
+
+                        <li><input name="id[]" type="checkbox" value="{{$todo['id']}}" /> {{$todo['description']}}</li>
                         @endforeach
+                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                        {!! Form::close() !!}
+                        @endif
+
                     </ul>
                 </div>
             </div>

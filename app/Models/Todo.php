@@ -23,4 +23,9 @@ class Todo extends Model
         return DB::table('to_dos')->whereIn('id', $ids)->update(['done' => 1]);
     }
 
+    public static function deleteTodos($ids){
+
+        return DB::table('to_dos')->whereIn('id', $ids)->where('done', 1)->delete();
+
+    }
 }

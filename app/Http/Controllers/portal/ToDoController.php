@@ -34,10 +34,25 @@ class ToDoController extends Controller
 
     public function done(Request $request){
 
-        $result = App('TodoManager')->markTodos($request->except('_token'));
+        $result = App('TodoManager')->markTodos($request->except('_token')['id']);
 
         if($result){
             $request->session()->flash('message', 'To-dos successfully marked as done!');
+        }
+
+        else {
+            $request->session()->flash('error', TRUE);
+            $request->session()->flash('message', 'Error please try again');
+        }
+        return redirect()->back();
+    }
+
+    public function destroy(Request $request){
+
+        $result = App('TodoManager')->delete($request->except('_token')['id']);
+
+        if($result){
+            $request->session()->flash('message', 'To-dos successfully deleted');
         }
 
         else {

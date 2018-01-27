@@ -17,3 +17,5 @@ Route::POST('store', ['as' => 'todo.store', 'uses' => 'portal\ToDoController@sto
 
 Route::POST('done', ['as' => 'todo.done', 'uses' => 'portal\ToDoController@done']);
 
+Route::POST('delete', ['as' => 'todo.delete', 'uses' => 'portal\ToDoController@destroy']);
+
