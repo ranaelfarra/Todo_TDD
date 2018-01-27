@@ -7,8 +7,9 @@ use App\Managers\TodoManager;
 class ToDoTest extends TestCase
 {
 
-    use DatabaseTransactions;
 
+    use DatabaseTransactions;
+    use DatabaseMigrations;
     private $todo;
 
     protected function setUp()
@@ -33,9 +34,9 @@ class ToDoTest extends TestCase
 
     public function test_create_new_todo(){
 
-        $new_todo = ['description' => 'Add new Todo'];
+        $todo = ['description' => 'Add new Todo'];
 
-        $result = $this->todo->store($new_todo);
+        $result = $this->todo->store($todo);
 
         $this->assertEquals(true,$result);
     }
@@ -46,6 +47,7 @@ class ToDoTest extends TestCase
         $this->assertNotEquals(false,$list_todos);
 
     }
+
     public function test_mark_todos_as_done(){
 
         $todos_id = array_column(factory(App\Models\Todo::class, 3)->create()->toArray() , 'id');
@@ -64,14 +66,13 @@ class ToDoTest extends TestCase
 
     }
 
-    public function test_delete_todo(){
+    public function test_delete_todos(){
 
 
-        $todos_id = array_column(factory(App\Models\Todo::class, 3)->create(['done' => 1])->toArray() , 'id');
+        $todos['id'] = array_column(factory(App\Models\Todo::class, 3)->create(['done' => 1])->toArray() , 'id');
 
-        $result = $this->todo->delete($todos_id);
+        $this->todo->delete($todos['id']);
 
-        $this->assertEquals(3,$result);
-
+        $this->notSeeInDatabase('to_dos',$todos);
     }
 }
