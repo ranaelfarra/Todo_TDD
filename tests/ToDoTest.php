@@ -4,12 +4,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Managers\TodoManager;
+use App\Models\Todo;
 class ToDoTest extends TestCase
 {
 
 
     use DatabaseTransactions;
-    use DatabaseMigrations;
     private $todo;
 
     protected function setUp()
@@ -38,7 +38,7 @@ class ToDoTest extends TestCase
 
         $result = $this->todo->store($todo);
 
-        $this->assertEquals(true,$result);
+        $this->assertInstanceOf(Todo::class,$result);
     }
     public function test_list_all_todos(){
 

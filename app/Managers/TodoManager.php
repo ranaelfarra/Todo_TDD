@@ -39,9 +39,7 @@ class TodoManager
 
          try{
 
-             Todo::create($todo);
-
-             return true;
+             return Todo::create($todo);
          }
          catch (\Exception $exception){
 
