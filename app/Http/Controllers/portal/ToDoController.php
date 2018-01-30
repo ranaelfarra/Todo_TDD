@@ -4,6 +4,7 @@ namespace App\Http\Controllers\portal;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class ToDoController extends Controller
@@ -21,7 +22,7 @@ class ToDoController extends Controller
 
         $result = App('TodoManager')->store($request->all());
 
-        if($result){
+        if($result instanceof Todo){
             $request->session()->flash('message', 'Todo successfully saved!');
         }
 

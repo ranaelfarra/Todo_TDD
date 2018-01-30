@@ -5,11 +5,12 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Managers\TodoManager;
 use App\Models\Todo;
+use Illuminate\Database\QueryException;
+
 class ToDoTest extends TestCase
 {
-
-
     use DatabaseTransactions;
+
     private $todo;
 
     protected function setUp()
@@ -44,7 +45,7 @@ class ToDoTest extends TestCase
 
         $list_todos = $this->todo->listAllUndoneTodos();
 
-        $this->assertNotEquals(false,$list_todos);
+        $this->assertNotEquals(QueryException::class ,$list_todos);
 
     }
 
@@ -54,7 +55,7 @@ class ToDoTest extends TestCase
 
         $result = $this->todo->markTodos($todos_id);
 
-        $this->assertNotEquals(false,$result);
+        $this->assertNotEquals(QueryException::class,$result);
 
     }
 
@@ -62,12 +63,11 @@ class ToDoTest extends TestCase
 
         $list_todos = $this->todo->listAllDoneTodos();
 
-        $this->assertNotEquals(false,$list_todos);
+        $this->assertNotEquals(QueryException::class,$list_todos);
 
     }
 
     public function test_delete_todos(){
-
 
         $todos['id'] = array_column(factory(App\Models\Todo::class, 3)->create(['done' => 1])->toArray() , 'id');
 
