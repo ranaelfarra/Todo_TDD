@@ -3,5 +3,11 @@ It's a todo application using [laravel](https://laravel.com/) framework .The mai
 
 ##installation 
 
- ```composer install```
+-  ```composer install```
+ 
+-  ```php artisan migrate```
+ 
+ #### if you wish to add fake data :
+-  ```php artisan db:seed```
+ 
   
